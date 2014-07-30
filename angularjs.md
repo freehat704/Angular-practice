@@ -208,7 +208,7 @@ Check out: ```ng-click```
 ```javascript
 function CalculatorCtrl($scope) {
   $scope.add = function(addend1, addend2) {
-    $scope.sum = addend1 + addend2;
+    $scope.sum = addend + addend2;
   };
 }
 ```
@@ -217,8 +217,41 @@ Does not do type conversion for us.
 
 ```javascript
 function CalculatorCtrl($scope) {
-  $scope.add = function(addend1, addend2) {
-    $scope.sum = Number(addend1) + Number(addend2);
+  $scope.add = function(addend, addend2) {
+    $scope.sum = Number(addend) + Number(addend2);
+  };
+}
+```
+
+Another way of doing it:
+
+```javascript
+function CalculatorCtrl($scope) {
+  $scope.add = function() {
+    $scope.sum = Number($scope.addend) + Number($scope.addend2);
+  };
+}
+```
+
+Changing the students field with a click:
+
+```html
+<body ng-controller="StudentCtrl">
+  <ul>
+    <li ng-repeat="student in students" ng-click="editStudent(student)">{{student.name}} is {{student.age}}</li>
+  </ul>
+  <input name="name" ng-model="selectedStudent.name" placeholder="Select name"/><br/>
+  
+  <input name="age" ng-model="selectedStudent.age" placeholder="Select age"/><br/>
+  
+</body>
+```
+
+```javascript
+function StudentCtrl($scope) {
+  $scope.students = [{name: "Joe", age: 23}, {name: "Chris", age: 41}];
+  $scope.editStudent = function(student) {
+    $scope.selectedStudent = student;
   };
 }
 ```
