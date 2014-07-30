@@ -281,7 +281,7 @@ function ShowHideCtrl() {
 
 ### Loading Images
 
-```ng-src``` 
+```ng-src```
 
 Loads the image after Angular is loaded
 
