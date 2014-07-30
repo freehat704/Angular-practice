@@ -55,6 +55,8 @@ Angular Traits
 
 Unit and Functional Testing
 
+Jasmine testing for AngularJS code.
+
 ### Directives
 
 Founder thought of Angular as HTML complier
