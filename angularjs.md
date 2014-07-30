@@ -101,6 +101,10 @@ How to create a model: ```$scope``` or ```this```
 * Behavior = functions
 * Should be thin(ish)
 
+#### $scope
+
+beware of setting up on which scope you are in, like $rootscope.
+
 #### ng-model
 
 * establish a two-way binding between model and view
@@ -255,3 +259,41 @@ function StudentCtrl($scope) {
   };
 }
 ```
+
+### Show and Hide
+
+We can use ```ng-show``` to change up the showing and hiding properties of viewing a particular part of the DOM.
+
+```html
+<body ng-controller="ShowHideCtrl as showHide">
+  <label>Display? <input type="checkbox" ng-model="showHide.displayMe" /></label>
+  <div ng-show="showHide.displayMe">Here I am!</div>
+</body>
+```
+
+```javascript
+function ShowHideCtrl() {
+  this.displayMe = true;
+}
+```
+
+```ng-hide``` works in the opposite way.
+
+### Loading Images
+
+```ng-src``` 
+
+Loads the image after Angular is loaded
+
+### Lots of Directives open source
+
+[List of directives](ngmodels.org)
+
+### Modules
+
+App or package that contains a lot of what you need (controllers, models, etc.)
+
+* Creating modules (two arguments)
+* Grab a module (one argument)
+
+
