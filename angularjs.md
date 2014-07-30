@@ -47,6 +47,8 @@ Angular Traits
 
 > An injection is the passing of a dependency (a service) to a dependent object (a client). The service is made part of the client's state. Passing the service to the client, rather than allowing a client to build or find the service, is the fundamental requirement of the pattern.
 
+[Wikipedia Source](http://en.wikipedia.org/wiki/Dependency_injection)
+
 ### Testing
 
 Unit and Functional Testing
@@ -190,3 +192,33 @@ function RepeatCtrl($scope) {
 
 [Source](https://docs.angularjs.org/error/ngRepeat/dupes)
 
+### Binding on click
+
+Check out: ```ng-click```
+
+```html
+<body ng-controller="CalculatorCtrl">
+  <div>
+  <input ng-model="addend" /> + <input ng-model="addend2" /> = {{sum}}
+  </div>
+  <input type="button" value="Add!" ng-click="add(addend,addend2)" />
+</body>
+```
+
+```javascript
+function CalculatorCtrl($scope) {
+  $scope.add = function(addend1, addend2) {
+    $scope.sum = addend1 + addend2;
+  };
+}
+```
+
+Does not do type conversion for us.
+
+```javascript
+function CalculatorCtrl($scope) {
+  $scope.add = function(addend1, addend2) {
+    $scope.sum = Number(addend1) + Number(addend2);
+  };
+}
+```
