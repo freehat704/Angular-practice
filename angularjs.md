@@ -296,4 +296,20 @@ App or package that contains a lot of what you need (controllers, models, etc.)
 * Creating modules (two arguments)
 * Grab a module (one argument)
 
+Away from the global scope:
 
+```javascript
+fruit = angular.module("fruit", []);
+
+fruit.controller("RepeatCtrl", function($scope) {
+  $scope.fruits = [
+    {name: "Bananas", description: "Yellow and peely"}, 
+    {name: "Canteloupe", description: "Tell if its ripe by smelling them"}, 
+    {name: "Cherries", description: "Dont try to make jam out of sweet ones"}, 
+    {name: "Strawberries", description: "Picking them is murder on your back"},
+     {name: "Tomatoes", description: "People used to think they were poisonous" }
+  ];
+  
+  $scope.details = { name: "Chris", age: 41, title: "Occupant" };
+});
+```
