@@ -22,6 +22,8 @@ Note: We were using JSBin to run our angular stuff. Include this in the HTML:
 </head>
 ```
 
+All examples can be found [here](http://gaslight.github.io/campng/).
+
 ### The Old Way
 
 Hey, we used to have everything heavy on the server side. On the client, we only have interactivity.
@@ -287,7 +289,7 @@ Loads the image after Angular is loaded
 
 ### Lots of Directives open source
 
-[List of directives](ngmodels.org)
+[List of directives](http://ngmodules.org/)
 
 ### Modules
 
@@ -311,5 +313,41 @@ fruit.controller("RepeatCtrl", function($scope) {
   ];
   
   $scope.details = { name: "Chris", age: 41, title: "Occupant" };
+});
+```
+
+### Dependencies
+
+Remember - share between things, singletons
+
+Lots of types of dependencies:
+
+* Factory
+	* Has a name and function, function return = dependency
+* Service
+	* Constructor function, calls once and then cached (singleton)
+* Provider
+* Constant
+
+How to define your own dependencies:
+
+```javascript
+fruit = angular.module("fruit", []);
+
+fruit.factory("Fruit", function() {
+  return {
+    fruits: [
+      {name: "Bananas", description: "Yellow and peely"}, 
+      {name: "Canteloupe", description: "Tell if its ripe by smelling them"}, 
+      {name: "Cherries", description: "Dont try to make jam out of sweet ones"}, 
+      {name: "Strawberries", description: "Picking them is murder on your back"},
+      {name: "Tomatoes", description: "People used to think they were poisonous" }
+     ]
+  };
+});
+
+
+fruit.controller("FruitCtrl", function($scope, Fruit) {
+  $scope.fruits = Fruit.fruits;
 });
 ```
