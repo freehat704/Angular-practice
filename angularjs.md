@@ -47,6 +47,10 @@ Can be nested
 
 Looks like this: ```{{ stuff }}```
 
+```html
+<html ng-app>
+```
+
 ### Controllers
 
 * Adds models and behaviors to a section of your page
