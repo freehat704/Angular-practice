@@ -75,6 +75,54 @@ function GreeterCtrl($scope) {
 
 How to create a model: ```$scope``` or ```this```
 
-Behavior = functions
+* Behavior = functions
+* Should be thin(ish)
 
-Should be thin(ish)
+#### ng-model
+
+* establish a two-way binding between model and view
+* Changes from either side are immediately reflected
+
+### Loops
+
+Create a scope within a scope: ```ng-repeat = "item in items"```
+
+```html
+<body ng-controller="RepeatCtrl">
+  <ul>
+    <li ng-repeat="fruit in fruits">{{fruit}}</li>
+  </ul>
+  
+  My particulars
+  <ul>
+    <li ng-repeat="(key, value) in details">{{key}} is {{value}}</li>
+  </ul>
+</body>
+```
+
+```javascript
+function RepeatCtrl($scope) {
+  $scope.fruits = ["Bananas", "Canteloupe", "Cherries", "Strawberries", "Tomatoes"];
+  $scope.details = { name: "Chris", age: 41, title: "Occupant" };
+}
+```
+
+### Track By Expression
+
+> Occurs if there are duplicate keys in an ngRepeat expression. Duplicate keys are banned because AngularJS uses keys to associate DOM nodes with items.
+
+> By default, collections are keyed by reference which is desirable for most common models but can be problematic for primitive types that are interned (share references).
+
+> For example the issue can be triggered by this invalid code:
+
+```html
+<div ng-repeat="value in [4, 4]"></div>
+```
+
+> To resolve this error either ensure that the items in the collection have unique identity or use the track by syntax to specify how to track the association between models and DOM.
+
+> To resolve the example above can be resolved by using track by $index, which will cause the items to be keyed by their position in the array instead of their value:
+
+```html
+<div ng-repeat="value in [4, 4] track by $index"></div>
+```
