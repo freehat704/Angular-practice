@@ -5,6 +5,23 @@ Super compressed lecture on Angular
 
 ### Welcome to CampNG!
 
+Note: We were using JSBin to run our angular stuff. Include this in the HTML:
+
+```html
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta name="description" content="Camp NG Example 0" />
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+	<script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+	<meta charset=utf-8 />
+	<title>JS Bin</title>
+</head>
+```
+
 ### The Old Way
 
 Hey, we used to have everything heavy on the server side. On the client, we only have interactivity.
@@ -51,6 +68,10 @@ Looks like this: ```{{ stuff }}```
 <html ng-app>
 ```
 
+```html
+{{Hello, World!}}
+```
+
 ### Controllers
 
 * Adds models and behaviors to a section of your page
@@ -83,6 +104,27 @@ How to create a model: ```$scope``` or ```this```
 * establish a two-way binding between model and view
 * Changes from either side are immediately reflected
 
+```html
+<body ng-controller="RepeatCtrl">
+  <ul>
+    <li ng-repeat="fruit in fruits">{{fruit}}</li>
+  </ul>
+  
+  My particulars
+  <ul>
+    <li ng-repeat="(key, value) in details">{{key}} is {{value}}</li>
+    <input ng-model="fruits[0]" />
+  </ul>
+</body>
+```
+
+```javascript
+function RepeatCtrl($scope) {
+  $scope.fruits = ["Bananas", "Canteloupe", "Cherries", "Strawberries", "Tomatoes"];
+  $scope.details = { name: "Chris", age: 41, title: "Occupant" };
+}
+```
+
 ### Loops
 
 Create a scope within a scope: ```ng-repeat = "item in items"```
@@ -107,6 +149,25 @@ function RepeatCtrl($scope) {
 }
 ```
 
+#### My lab example
+
+```html
+<body ng-controller="RepeatCtrl">
+  <ul>
+    <li ng-repeat="student in students">{{student.name}} is {{student.age}} years old</li>
+  </ul>
+</body>
+```
+
+```javascript
+function RepeatCtrl($scope) {
+  $scope.sally = { name: "Sally", age: 41, title: "Occupant" };
+  $scope.george = { name: "George", age: 30, title: "Occupant" };
+  $scope.kim = { name: "Kim", age: 20, title: "Occupant" };
+  $scope.students = [$scope.sally, $scope.george, $scope.kim];
+}
+```
+
 ### Track By Expression
 
 > Occurs if there are duplicate keys in an ngRepeat expression. Duplicate keys are banned because AngularJS uses keys to associate DOM nodes with items.
@@ -126,3 +187,6 @@ function RepeatCtrl($scope) {
 ```html
 <div ng-repeat="value in [4, 4] track by $index"></div>
 ```
+
+[Source](https://docs.angularjs.org/error/ngRepeat/dupes)
+
