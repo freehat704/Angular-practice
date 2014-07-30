@@ -55,6 +55,18 @@ Looks like this: ```{{ stuff }}```
 
 How to create a controller: ```ng-controller```
 
+```html
+<body ng-controller="GreeterCtrl">
+  {{ greetee }}
+</body>
+```
+
+```javascript
+function GreeterCtrl($scope) {
+  $scope.greetee = "Hi There CampNG!";
+}
+```
+
 ### Models
 
 How to create a model: ```$scope``` or ```this```
